@@ -2,6 +2,20 @@
   "schema": [
     {
       "id": 1
+    },
+    {
+      "name": "thành đô vũ",
+      "textarea": "fqwfqw",
+      "checked": false,
+      "select": "react",
+      "id": 2
+    },
+    {
+      "name": "fewfewf",
+      "textarea": "fqwfwqf",
+      "checked": true,
+      "select": "react",
+      "id": 3
     }
   ]
 }
