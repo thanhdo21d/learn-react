@@ -1,20 +1,15 @@
-import React,{Fragment} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import FormClass from './component/FormClass';
-import FormFc from './component/FormFc';
+import React from 'react'
+import { RouterProvider } from 'react-router'
+import routes from './router'
 
-function App() {
-  const value: any = 10
 
-  const demo = (value as number)
 
+const App = () => {
   return (
-      <>
-      <FormClass/>
-      <FormFc/>
-      </>
-  );
+    <div style={{cursor:"pointer"}}>
+      <RouterProvider router={routes}/>
+    </div>
+  )
 }
 
-export default App;
+export default App

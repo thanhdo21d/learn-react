@@ -1,21 +1,10 @@
 {
-  "schema": [
+  "data": [
     {
-      "id": 1
-    },
-    {
-      "name": "thành đô vũ",
-      "textarea": "fqwfqw",
-      "checked": false,
-      "select": "react",
-      "id": 2
-    },
-    {
-      "name": "fewfewf",
-      "textarea": "fqwfwqf",
-      "checked": true,
-      "select": "react",
-      "id": 3
+      "name": "admin",
+      "price": "55",
+      "id": 6,
+      "role": "chien tranh"
     }
   ]
 }
