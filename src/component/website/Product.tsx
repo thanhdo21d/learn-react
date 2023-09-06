@@ -11,18 +11,18 @@ const Product = () => {
   const userName : any = {
     name : "user"
   }
-  useEffect(() => {
-    const fetchData = async() => {
-      const { data } = await getALlData()
-      setProduct(data)
-    }
-    fetchData()
-  },[])
+  // useEffect(() => {
+  //   const fetchData = async() => {
+  //     const { data } = await getALlData()
+  //     setProduct(data)
+  //   }
+  //   fetchData()
+  // },[])
   return (
     <div>
       {count}
       <button onClick={()=> setCount(count + 1)}> click me</button>
-      {
+      {/* {
         product?.map((item : Idata) => (
           <div key={item?.id}>
             <p>
@@ -39,7 +39,7 @@ const Product = () => {
             </button>
           </div>
         ))
-      }
+      } */}
       <DashBoard  />
     </div>
   )

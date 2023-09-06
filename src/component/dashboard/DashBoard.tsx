@@ -9,7 +9,8 @@ const DashBoard = ( ) => {
   useEffect(() => {
     const mapData = async() => {
     const {data} = await getALlData()
-    setItem(data)
+      // setItem(data)
+      // console.log(data)
     }
     mapData()
   }, [])

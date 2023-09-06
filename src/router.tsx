@@ -8,13 +8,14 @@ import AddProduct from "./component/admin/AddProduct"
 import DashBoard from "./component/dashboard/DashBoard"
 import EditProduct from "./component/admin/EditProduct"
 import ProductDetails from "./component/website/ProductDetails"
+import Demo from "./component/dashboard/Demo"
 const routes = createBrowserRouter([
   //Outlet
   {
-    path: '/', element: <LayoutWebsite />
+    path: '/', element: <Demo />
   },
   {
-    path: '/product/:id', element: <ProductDetails />
+    // path: '/product/:id', element: <ProductDetails />
   },
   {
     path: '/signup', element : <Signup/>
@@ -32,13 +33,13 @@ const routes = createBrowserRouter([
         element: <LayoutAdmin />,
         children: [
           {
-          index : true, element:<DashBoard/>
+          // index : true, element:<DashBoard/>
         },
           {
-           path:"add-product", element:<AddProduct/>
+          //  path:"add-product", element:<AddProduct/>
           },
            {
-           path:"product/:id/edit", element:<EditProduct/>
+          //  path:"product/:id/edit", element:<EditProduct/>
           }
         ]
       }

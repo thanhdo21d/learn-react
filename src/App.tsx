@@ -4,9 +4,10 @@ import routes from './router'
 
 
 
+
 const App = () => {
   return (
-    <div style={{cursor:"pointer"}}>
+    <div style={{ cursor: "pointer" }}>
       <RouterProvider router={routes}/>
     </div>
   )
