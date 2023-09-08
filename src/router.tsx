@@ -9,10 +9,12 @@ import DashBoard from "./component/dashboard/DashBoard"
 import EditProduct from "./component/admin/EditProduct"
 import ProductDetails from "./component/website/ProductDetails"
 import Demo from "./component/dashboard/Demo"
+import DemoRef from "./component/useRef/DemoRef"
+import AddToCart from "./component/demo-cart/AddToCart"
 const routes = createBrowserRouter([
   //Outlet
   {
-    path: '/', element: <Demo />
+    path: '/', element: <AddToCart />
   },
   {
     // path: '/product/:id', element: <ProductDetails />

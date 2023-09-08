@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useStore } from '../../hooks/useStore'
 import { useFetchApi } from '../../hooks/useAutoDispatch'
 
-
+//import.meta.env.ten-API
 const Demo = () => {
   //https://picsum.photos/v2/list?page=2&limit=100
   const {data : users , isloading, error} = useFetchApi("https://picsum.photos/v2/list?page=2&limit=100")
