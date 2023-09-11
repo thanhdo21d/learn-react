@@ -1,6 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
+import HOME_PRODUCT_EN from "../locales/en/home.json";
+import HOME_PRODUCT_VI from "../locales/vi/home.json";
+import HEADER_PRODUCT_EN from "../locales/en/header.json";
+import HEADER_PRODUCT_VI from "../locales/vi/header.json";
 export const locals = {
   en: "English",
   vi: "Tiếng Việt",
@@ -8,27 +11,23 @@ export const locals = {
 
 const resources = {
   en: {
-    translation: {
-      //shopee 9/9 sale lớn mua ngay
-      "Shope Sale": "shopee 9/9 big sale buy now",
-      "Shope Cart": "Shope Cart",
-      "Add TO Cart": "Add TO Cart",
-    },
+    home: HOME_PRODUCT_EN,
+    header: HEADER_PRODUCT_EN,
   },
   vi: {
-    translation: {
-      //shopee 9/9 sale lớn mua ngay
-      "Shope Sale": "shopee 9/9 sale lớn mua ngay",
-      "Shope Cart": "Giỏ Hàng",
-      "Add TO Cart": "Thêm Sản Phẩm",
-    },
+    home: HOME_PRODUCT_VI,
+    header: HEADER_PRODUCT_VI,
   },
 };
+
+export const defaultNS = "home";
 
 i18n.use(initReactI18next).init({
   resources,
   lng: "vi",
+  ns: ["home", "header"],
   fallbackLng: "vi",
+  defaultNS,
   interpolation: {
     escapeValue: false, // react already safes from xss
   },

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import "../../i18n/i18n"
 import { locals } from '../../i18n/i18n';
 const AddToCart = () => {
-  const { t,i18n } = useTranslation()
+  const { t,i18n } = useTranslation("home")
   console.log(t)
   const [gioHang, setGioHang] = useState<any>([])
   const [showCart, setShowCart] = useState<boolean>(false)
@@ -80,7 +80,7 @@ const AddToCart = () => {
   const currenLanguage = locals[i18n.language as keyof typeof locals]
   return (
     <div>
-      <center> { t("Shope Sale")}</center>
+      <center> { t("home.Shope Sale")}</center>
       <div className='text-right'>
         <ToastContainer position="top-right"
           autoClose={5000}
@@ -94,7 +94,7 @@ const AddToCart = () => {
           theme="light" />
       </div>
       <div className='text-right pr-10'>
-        <p onClick={() => setShowCart(!showCart)}>  {checkSLCart()} { t("Shope Cart")}</p>
+        <p onClick={() => setShowCart(!showCart)}>  {checkSLCart()} { t("home.Shope Sale")}</p>
       </div>
 
       <ModelCart gioHang={gioHang} showCart={showCart} updateGioHang={updateGioHang} remoteProduct={remoteProduct} />
