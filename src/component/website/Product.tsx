@@ -3,7 +3,8 @@ import { getALlData } from '../../api/product.servcies'
 import { Idata } from '../../interface/product'
 import { useNavigate } from 'react-router-dom'
 import DashBoard from '../dashboard/DashBoard'
-
+import { Helmet } from 'react-helmet-async'
+import { convert } from 'html-to-text';
 const Product = () => {
   const navigate = useNavigate()
   const [product, setProduct] = useState<Idata[]>([])
@@ -11,18 +12,20 @@ const Product = () => {
   const userName : any = {
     name : "user"
   }
-  // useEffect(() => {
-  //   const fetchData = async() => {
-  //     const { data } = await getALlData()
-  //     setProduct(data)
-  //   }
-  //   fetchData()
-  // },[])
+  useEffect(() => {
+    const fetchData = async() => {
+      const { data } = await getALlData()
+      setProduct(data)
+    }
+    fetchData()
+  },[])
   return (
     <div>
-      {count}
-      <button onClick={()=> setCount(count + 1)}> click me</button>
-      {/* {
+      <Helmet>
+          <title> thêm sản phẩm    </title>
+          <meta name='description' />
+      </Helmet>
+      {
         product?.map((item : Idata) => (
           <div key={item?.id}>
             <p>
@@ -39,7 +42,7 @@ const Product = () => {
             </button>
           </div>
         ))
-      } */}
+      }
       <DashBoard  />
     </div>
   )

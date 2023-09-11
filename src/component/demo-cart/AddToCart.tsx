@@ -1,26 +1,53 @@
 import React, { useState } from 'react'
 import ModelCart from './ModelCart'
 import ProductList from './ProductList'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
+import "../../i18n/i18n"
+import { locals } from '../../i18n/i18n';
 const AddToCart = () => {
+  const { t,i18n } = useTranslation()
+  console.log(t)
   const [gioHang, setGioHang] = useState<any>([])
   const [showCart, setShowCart] = useState<boolean>(false)
-
-  let addToCard = (sanPham : any) => {
+  const notify = () => toast.success('Đã Thêm Sản Phẩm Thành Công ', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+  const notifyError = () => toast.error('Sản Phẩm Đã Hết Hàng', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+  let addToCard = (sanPham: any) => {
     let spcart = {
       maSP: sanPham.maSP,
-      tenSP : sanPham.tenSP,
-      price : sanPham.price,
-      images : sanPham.images,
-      soLuong :1
+      tenSP: sanPham.tenSP,
+      price: sanPham.price,
+      images: sanPham.images,
+      soLuong: 1
     }
 
     let index = gioHang.findIndex((spGH: any) => spGH.maSP === spcart.maSP)
     if (index !== -1) {
       gioHang[index].soLuong += 1
+      notifyError()
     }
     else {
       gioHang.push(spcart)
+      notifyError()
     }
     setGioHang([...gioHang])
     console.log(sanPham)
@@ -28,14 +55,14 @@ const AddToCart = () => {
   const checkSLCart = () => gioHang.reduce((total, SP) => {
     return (total += SP.soLuong)
   }, 0)
-  const remoteProduct = (maSP : number) => {
+  const remoteProduct = (maSP: number) => {
     let index = gioHang.findIndex((spGioHang: any) => spGioHang.maSP === maSP)
     if (index !== -1) {
       gioHang.splice(index, 1)
       setGioHang([...gioHang])
     }
   }
-  const updateGioHang = (maSP : number, number : number) => {
+  const updateGioHang = (maSP: number, number: number) => {
     let updateGiohangTotal = [...gioHang]
     let index = updateGiohangTotal.findIndex((spGioHang) => spGioHang.maSP === maSP)
     if (index !== -1) {
@@ -47,18 +74,44 @@ const AddToCart = () => {
       setGioHang(updateGiohangTotal)
     }
   }
-
+  const changeLg = (lag : string) => {
+   i18n.changeLanguage(lag)
+  }
+  const currenLanguage = locals[i18n.language as keyof typeof locals]
   return (
     <div>
-      <center> shopee 9/9 sale lớn mua ngay </center>
-
+      <center> { t("Shope Sale")}</center>
+      <div className='text-right'>
+        <ToastContainer position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
+      </div>
       <div className='text-right pr-10'>
-        <p onClick={() => setShowCart(!showCart)}>  { checkSLCart()} gio hang</p>
+        <p onClick={() => setShowCart(!showCart)}>  {checkSLCart()} { t("Shope Cart")}</p>
       </div>
 
       <ModelCart gioHang={gioHang} showCart={showCart} updateGioHang={updateGioHang} remoteProduct={remoteProduct} />
 
       <ProductList addToCard={addToCard} />
+
+      <button onClick={()=> changeLg("en")} className='p-5'>
+        en
+      </button>
+
+       <button onClick={()=> changeLg("vi")} className='p-5'>
+        vi
+      </button>
+
+      <p>
+        {currenLanguage}
+      </p>
     </div>
   )
 }

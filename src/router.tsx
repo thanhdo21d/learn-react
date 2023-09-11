@@ -11,13 +11,14 @@ import ProductDetails from "./component/website/ProductDetails"
 import Demo from "./component/dashboard/Demo"
 import DemoRef from "./component/useRef/DemoRef"
 import AddToCart from "./component/demo-cart/AddToCart"
+import Product from "./component/website/Product"
 const routes = createBrowserRouter([
   //Outlet
   {
     path: '/', element: <AddToCart />
   },
   {
-    // path: '/product/:id', element: <ProductDetails />
+    path: '/product/:id', element: <ProductDetails />
   },
   {
     path: '/signup', element : <Signup/>

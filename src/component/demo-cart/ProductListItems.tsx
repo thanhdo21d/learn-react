@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ProductListItems = (props) => {
+  const { t,i18n } = useTranslation()
   const [success,setSucess] = useState(false)
   const { sanPham, addToCard } = props
-
-
   return (
     <div>
       <img className='w-[300px]' src={sanPham.images} alt='' />
@@ -15,7 +15,7 @@ const ProductListItems = (props) => {
         <button onClick={() => {
           setSucess(true)
           return addToCard(sanPham)
-        }} className='mt-4 py-3 w-[100px] bg-green-500 rounded-md text-white font-bold'> add to cart </button>
+        }} className='mt-4 py-3 w-[100px] bg-green-500 rounded-md text-white font-bold'> {t("Add TO Cart")} </button>
       </div>
 
       {success && <div>
