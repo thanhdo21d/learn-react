@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { DataContext } from './AddToCart'
 
-const ModelCart = (props) => {
-  const { showCart, gioHang ,updateGioHang ,remoteProduct} = props
+const ModelCart = () => {
+  console.log("re-render khong can thiet")
+  const { showCart, gioHang ,updateGioHang ,remoteProduct} = useContext(DataContext)
   console.log(gioHang)
   const [popUpCart, setpopUpCart] = useState<boolean>(false)
 
@@ -10,6 +12,7 @@ const ModelCart = (props) => {
         setpopUpCart(!popUpCart)
       }
   },[showCart])
+
 
   const renderCartItem = () => gioHang.map((item : any) => (
     <tr key={item.maSP}>
@@ -43,7 +46,10 @@ const ModelCart = (props) => {
   ))
 
   const allTotalSp = () => {
-    return gioHang.reduce((tongTien, SpGiohang) => {
+    return gioHang.reduce((tongTien : any, SpGiohang : any) => {
+      console.log(tongTien)
+      console.log(SpGiohang)
+
       return (tongTien += SpGiohang.soLuong * SpGiohang.price).toLocaleString()
     },0)
   }
@@ -68,9 +74,13 @@ const ModelCart = (props) => {
           </tbody>
 
           <tfoot>
-            <p>
+            <tr>
+              <td>
               tổng tiền {allTotalSp()}
-          </p>
+
+              </td>
+            </tr>
+
           </tfoot>
         </table>
       </div>}

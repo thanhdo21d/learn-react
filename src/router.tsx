@@ -12,10 +12,18 @@ import Demo from "./component/dashboard/Demo"
 import DemoRef from "./component/useRef/DemoRef"
 import AddToCart from "./component/demo-cart/AddToCart"
 import Product from "./component/website/Product"
+import DemoZoom from "./component/demo-zoom-images/DemoZoom"
+import FirebaseLearn from "./component/demo-firebase/FirebaseLearn"
 const routes = createBrowserRouter([
   //Outlet
   {
     path: '/', element: <AddToCart />
+  },
+   {
+    path: '/firebase', element: <FirebaseLearn />
+  },
+   {
+    path: '/demo-zoom', element: <DemoZoom />
   },
   {
     path: '/product/:id', element: <ProductDetails />

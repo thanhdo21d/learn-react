@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { DataContext } from './AddToCart'
+
+
 
 const ProductListItems = (props) => {
   const { t,i18n } = useTranslation("home")
   const [success,setSucess] = useState(false)
-  const { sanPham, addToCard } = props
+  const { sanPham } = props
+   const {  addToCard } = useContext(DataContext)
   return (
     <div>
       <img className='w-[300px]' src={sanPham.images} alt='' />

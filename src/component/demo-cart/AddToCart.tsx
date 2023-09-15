@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createContext, useState } from 'react'
 import ModelCart from './ModelCart'
 import ProductList from './ProductList'
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,10 +6,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 import "../../i18n/i18n"
 import { locals } from '../../i18n/i18n';
+import PortalDemo from '../react-portal/PortalDemo';
+
+export const DataContext = createContext({
+  addToCard: (sanPham: any) => { },
+  gioHang: [] as any,
+  showCart: Boolean as any,
+  remoteProduct: (maSP: number) => { },
+  updateGioHang:(maSP: number, number: number)=>{}
+})
+
 const AddToCart = () => {
   const { t,i18n } = useTranslation("home")
   console.log(t)
-  const [gioHang, setGioHang] = useState<any>([])
+  const [gioHang, setGioHang] = useState<any[]>([])
   const [showCart, setShowCart] = useState<boolean>(false)
   const notify = () => toast.success('Đã Thêm Sản Phẩm Thành Công ', {
     position: "top-right",
@@ -52,7 +62,7 @@ const AddToCart = () => {
     setGioHang([...gioHang])
     console.log(sanPham)
   }
-  const checkSLCart = () => gioHang.reduce((total, SP) => {
+  const checkSLCart = () => gioHang.reduce((total : any, SP : any) => {
     return (total += SP.soLuong)
   }, 0)
   const remoteProduct = (maSP: number) => {
@@ -97,9 +107,17 @@ const AddToCart = () => {
         <p onClick={() => setShowCart(!showCart)}>  {checkSLCart()} { t("home.Shope Sale")}</p>
       </div>
 
-      <ModelCart gioHang={gioHang} showCart={showCart} updateGioHang={updateGioHang} remoteProduct={remoteProduct} />
 
-      <ProductList addToCard={addToCard} />
+      <DataContext.Provider value={{
+        addToCard,
+        gioHang,
+        showCart,
+        updateGioHang,
+        remoteProduct
+      }}>
+      <ModelCart/>
+      <ProductList  />
+    </DataContext.Provider>
 
       <button onClick={()=> changeLg("en")} className='p-5'>
         en
@@ -112,6 +130,8 @@ const AddToCart = () => {
       <p>
         {currenLanguage}
       </p>
+
+      <PortalDemo/>
     </div>
   )
 }

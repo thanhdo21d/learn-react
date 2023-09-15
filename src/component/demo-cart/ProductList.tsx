@@ -1,8 +1,7 @@
 import React from 'react'
 import ProductListItems from './ProductListItems'
 
-const ProductList = (props) => {
-  const {addToCard} = props
+const ProductList = () => {
   const productItems = [
     {
       maSP: 1,
@@ -25,7 +24,7 @@ const ProductList = (props) => {
   ]
   const renderProduct = () => productItems.map((sanPham) => (
     <div key={sanPham.maSP}>
-      <ProductListItems sanPham={sanPham} addToCard={addToCard} />
+      <ProductListItems sanPham={sanPham}/>
     </div>
   ))
   return (
