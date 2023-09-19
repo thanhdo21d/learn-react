@@ -1,6 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, serverTimestamp } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase/config.firebase'
+import { useNavigate } from 'react-router-dom'
 interface IDAta {
   id: string,
   name: string,
@@ -10,18 +11,9 @@ const FirebaseLearn = () => {
   const colRefDb = collection(db, "product")
   const [name, setName] = useState<string>('')
   const [price,setPrice] = useState<string>('')
-  const [productData,setProductData] = useState<IDAta[]>([])
+  const [productData, setProductData] = useState<IDAta[]>([])
+  const navigate = useNavigate()
   useEffect(() => {
-    // getDocs(colRefDb).then((snapshot) => {
-    //   let data : any[] = []
-    //   snapshot.docs.forEach((product) => {
-    //     data.push({
-    //       id: product.id,
-    //       ...product.data()
-    //       })
-    //   })
-    //   setProductData(data)
-    // })
     onSnapshot(colRefDb, (snapshot) => {
        let data : any[] = []
       snapshot.docs.forEach((product) => {
@@ -33,7 +25,6 @@ const FirebaseLearn = () => {
       setProductData(data)
     })
   }, [])
-
   const handelAddData = (event : any) => {
     event.preventDefault()
     addDoc(colRefDb, {
@@ -49,6 +40,7 @@ const FirebaseLearn = () => {
     await deleteDoc(checkRemoveID)
     console.log("delete success")
   }
+  
   return (
     <div>
       {productData?.map((data) => (
@@ -56,6 +48,7 @@ const FirebaseLearn = () => {
           <p>{data.name}</p>
           <p>{data.price}</p>
           <button onClick={()=>handelRemoveData(data?.id)} className='w-[100px] bg-red-500 text-white font-bold mt-5'> delete data </button>
+          <button onClick={()=>navigate(`/data/${data?.id}/edit`)} className='w-[100px] bg-blue-500 text-white font-bold mt-5'> update data </button>
         </div>
       ))}
       <form className='mt-10' onSubmit={handelAddData}>

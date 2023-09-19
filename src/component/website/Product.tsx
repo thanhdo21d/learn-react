@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { getALlData } from '../../api/product.servcies'
 import { Idata } from '../../interface/product'
 import { useNavigate } from 'react-router-dom'
 import DashBoard from '../dashboard/DashBoard'
 import { Helmet } from 'react-helmet-async'
 import { convert } from 'html-to-text';
+import { getALlData } from '@/api/product.servcies'
 const Product = () => {
   const navigate = useNavigate()
   const [product, setProduct] = useState<Idata[]>([])
