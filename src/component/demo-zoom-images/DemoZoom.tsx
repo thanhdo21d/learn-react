@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import Button from '../button/Button'
+import AddPortal from '../react-portal/portal/edit-potal/add-portal/AddPortal'
 
 const DemoZoom = () => {
   const imageRef = useRef<any>(null)
@@ -40,7 +41,9 @@ const DemoZoom = () => {
       <Button type='submit'  className='w-[40px] bg-red-500 text-white rounded-md p-5 m-5' >add</Button>
        <Button
         className='w-[40px] bg-pink-600 text-white rounded-md p-5 m-5'>update</Button>
-        <Button    className='w-[40px] bg-green-700 text-white rounded-md p-5 m-5'>delete</Button>
+      <Button className='w-[40px] bg-green-700 text-white rounded-md p-5 m-5'>delete</Button>
+
+      <AddPortal/>
     </div>
 
   )

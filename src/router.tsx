@@ -14,6 +14,9 @@ import AddToCart from "./component/demo-cart/AddToCart"
 import Product from "./component/website/Product"
 import DemoZoom from "./component/demo-zoom-images/DemoZoom"
 import FirebaseLearn from "./component/demo-firebase/FirebaseLearn"
+import EditFirebase from "./component/demo-firebase/EditFirebase"
+import LoginGoogle from "./component/login-firebase/LoginGoogle"
+import LoginEmail from "./component/login-firebase/LoginEmail"
 const routes = createBrowserRouter([
   //Outlet
   {
@@ -21,6 +24,15 @@ const routes = createBrowserRouter([
   },
    {
     path: '/firebase', element: <FirebaseLearn />
+  },
+   {
+    path: '/sigin-firebase', element: <LoginGoogle />
+  },
+  {
+    path: '/sigin-email', element: <LoginEmail />
+  },
+  {
+    path: 'data/:id/edit', element: <EditFirebase />
   },
    {
     path: '/demo-zoom', element: <DemoZoom />

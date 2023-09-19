@@ -1,12 +1,14 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, serverTimestamp } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../firebase/config.firebase'
+import { useNavigate } from 'react-router-dom'
 interface IDAta {
   id: string,
   name: string,
   price : number
 }
 const FirebaseLearn = () => {
+  const navigate = useNavigate()
   const colRefDb = collection(db, "product")
   const [name, setName] = useState<string>('')
   const [price,setPrice] = useState<string>('')
@@ -55,7 +57,9 @@ const FirebaseLearn = () => {
         <div key={data?.id}>
           <p>{data.name}</p>
           <p>{data.price}</p>
-          <button onClick={()=>handelRemoveData(data?.id)} className='w-[100px] bg-red-500 text-white font-bold mt-5'> delete data </button>
+          <button onClick={() => handelRemoveData(data?.id)} className='w-[100px] bg-red-500 text-white font-bold mt-5'> delete data </button>
+
+           <button onClick={()=>navigate(`/data/${data?.id}/edit`)} className='w-[100px] bg-blue-500 text-white font-bold mt-5'> edit data </button>
         </div>
       ))}
       <form className='mt-10' onSubmit={handelAddData}>
