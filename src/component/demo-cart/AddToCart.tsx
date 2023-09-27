@@ -107,7 +107,6 @@ const AddToCart = () => {
         <p onClick={() => setShowCart(!showCart)}>  {checkSLCart()} { t("home.Shope Sale")}</p>
       </div>
 
-
       <DataContext.Provider value={{
         addToCard,
         gioHang,
